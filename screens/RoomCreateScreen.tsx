@@ -45,6 +45,7 @@ const RoomCreateScreen = ({
       setIsOwner(true);
       navigation.navigate("Center");
     } catch (err: any) {
+      console.log(err);
       Toast.show({
         type: "error",
         text1: String(err.response.data.message),

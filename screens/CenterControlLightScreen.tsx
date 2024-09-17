@@ -9,6 +9,7 @@ import { setLightOnDto } from "../types/setLightOnDto";
 import { setLightColorDto } from "../types/setLightColorDto";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { setStateDto } from "../types/setStateDto";
 
 const CenterControlLightScreen = ({
   navigation,
@@ -103,15 +104,22 @@ const CenterControlLightScreen = ({
     navigation.popToTop();
   };
 
+  const onSetState = (dto: setStateDto) => {
+    setIsOn(dto.isOn ?? false);
+    setColor(dto.color);
+  };
+
   useEffect(() => {
     socket.on("setLightOn", setIsOnProcess);
     socket.on("setLightColor", setColorProcess);
     socket.on("leaveRoom", onLeaveRoom);
+    socket.on("setState", onSetState);
 
     return () => {
       socket.off("setLightOn", setIsOnProcess);
       socket.off("setLightColor", setColorProcess);
       socket.off("leaveRoom", onLeaveRoom);
+      socket.off("setState", onSetState);
     };
   }, []);
 

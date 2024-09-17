@@ -3,14 +3,16 @@ import styles from "../styles/ColorShortcut.style";
 
 interface Props {
   color: string;
-  setColor: () => void;
+  onPressIn: () => void;
+  onPressOut: () => void;
 }
 
-const ColorShortcut = ({ color, setColor }: Props) => {
+const ColorShortcut = ({ color, onPressIn, onPressOut }: Props) => {
   return (
     <Pressable
       key={color}
-      onPress={setColor}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
       style={({ pressed }) => [
         styles.container,
         { backgroundColor: color, opacity: pressed ? 0.6 : 1 },
