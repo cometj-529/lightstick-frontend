@@ -12,7 +12,14 @@
       "distribution": "internal"
     },
     "production": {
-      "autoIncrement": true
+      "autoIncrement": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "SOCKET_URL": "https://socket.hxxstar.site",
+        "API_URL": "https://api.hxxstar.site"
+      }
     }
   },
   "submit": {
